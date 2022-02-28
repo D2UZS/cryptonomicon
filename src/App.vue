@@ -369,7 +369,6 @@ export default {
     },
 
     select(ticker) {
-      console.log(ticker);
       this.selectedTicker = ticker;
     },
 
@@ -385,6 +384,9 @@ export default {
   watch: {
     selectedTicker() {
       this.graph = [];
+
+      // Функция выполняется после перерисовки страницы
+      this.$nextTick().then(this.calculateMaxGraphElements);
     },
 
     tickers(newValue, oldValue) {
